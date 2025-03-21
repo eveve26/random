@@ -2,9 +2,9 @@
 
     <div id="container">
         <div id="lbox">
-            <input placeholder="player 1" id="player1" class="inputbox"></input>
-            <input placeholder="player 2" id="player2" class="inputbox"></input>
-            <input placeholder="rounds" id="round" class="inputbox"></input>
+            <input placeholder="player 1" id="player1" class="inputbox" maxlength="30"></input>
+            <input placeholder="player 2" id="player2" class="inputbox" maxlength="30"></input>
+            <input placeholder="rounds" id="round" class="inputbox" maxlength="7"></input>
             <button onclick="random()" id="runbutton">run</button>
         </div>
         <div id="rbox">Result:</div>
@@ -36,9 +36,11 @@
         margin-top: 80px;
         padding-left: 20px;
         padding-top: 10px;
-        height: 200px;
+        min-height: 200px;
         border-radius: 20px;
         font-size: 30px;
+        overflow: auto;
+        max-height: fit-content;
     }
     .inputbox{
         font-size: 16px;
