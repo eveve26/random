@@ -1,0 +1,131 @@
+<html>
+
+    <div id="container">
+        <div id="lbox">
+            <input placeholder="player 1" id="player1" class="inputbox"></input>
+            <input placeholder="player 2" id="player2" class="inputbox"></input>
+            <input placeholder="rounds" id="round" class="inputbox"></input>
+            <button onclick="random()" id="runbutton">run</button>
+        </div>
+        <div id="rbox">Result:</div>
+    </div>
+
+
+
+
+</html>
+<style>
+    #container{
+        overflow-x: scroll;
+        display:flex;
+        background-color: #F1F0EC;
+        height: 100%;
+    }
+    #lbox{
+        flex: 2;
+        color: #5F4B8B;
+        margin-top: 30px;
+        margin-left: 30px;
+        font-size: 20px;
+    }
+    #rbox{
+        flex:1;
+        color: #5F4B8B;
+        background-color: #00B0C9;
+        margin-right: 50px;
+        margin-top: 80px;
+        padding-left: 20px;
+        padding-top: 10px;
+        height: 200px;
+        border-radius: 20px;
+        font-size: 30px;
+    }
+    .inputbox{
+        font-size: 16px;
+        background-color: #5F4B8B;
+        color: #F1F0EC;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        height: 30px;
+    }
+    .inputbox::placeholder{
+        color: #F1F0EC;
+    }
+    .inputbox:focus{
+        background-color: #412e6b;
+    }
+    #runbutton{
+        font-size: 16px;
+        background-color: #00B0C9;
+        color: #F1F0EC;
+        border-radius: 10px;
+        height: 30px;
+        width: 60px;
+    }
+    #runbutton:hover{
+        background-color: #148d9d;
+    }
+</style>
+<script>
+    
+    function random() {
+        document.getElementById("rbox").textContent="Result:";
+        const name1 = document.getElementById("player1").value;
+        const name2 = document.getElementById("player2").value;
+        var round = document.getElementById("round").value;
+        const n = round;
+        if (isNaN(round)){
+            alert("rounds can only be a number!");
+            return;
+        }
+        
+        if (name1.trim()==="" || name2.trim()==="" || round.trim()===""){
+            alert("enter something!");
+            return;
+        }
+
+        var counter2 = 0;
+        var counter1 = 0;
+        while (round >0){
+            round = round-1;
+            const randomNum = Math.random()*2;
+
+            if (round == 0){
+                const res = document.createElement('div');
+                res.textContent="\n\nTHE WINNER IS...";
+                document.getElementById("rbox").appendChild(res);
+                setTimeout(() => {
+                    if (randomNum >= 1){
+                        const res = document.createElement('div');
+                        res.textContent=name1;
+                        document.getElementById("rbox").appendChild(res);
+                        counter1++;
+                    } else {
+                        const res = document.createElement('div');
+                        res.textContent=name2;
+                        document.getElementById("rbox").appendChild(res);
+                        counter2++;
+                    }
+                    const res2 = document.createElement('div');
+                    res2.textContent=name1+": "+counter1+"  "+name2+": "+counter2;
+                    document.getElementById("rbox").appendChild(res2);
+                }, 3000); 
+            } else {
+                if (randomNum >= 1){
+                    const res = document.createElement('p');
+                    res.textContent="round "+(n-round)+" "+name1;
+                    document.getElementById("lbox").appendChild(res);
+                    counter1++;
+                } else {
+                    const res = document.createElement('p');
+                    res.textContent="round "+(n-round)+" "+name2;
+                    document.getElementById("lbox").appendChild(res);
+                    counter2++;
+                }
+            }
+
+        }
+
+    }
+</script>
